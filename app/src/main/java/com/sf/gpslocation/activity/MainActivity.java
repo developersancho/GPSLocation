@@ -78,13 +78,10 @@ public class MainActivity extends BaseActivity {
      * Step 1: Check Google Play services
      */
     private void startStep1() {
-
         //Check whether this user has installed Google play service which is being used by Location updates.
         if (isGooglePlayServicesAvailable()) {
-
             //Passing null to indicate that it is executing for the first time.
             startStep2(null);
-
         } else {
             Toast.makeText(getApplicationContext(), R.string.no_google_playservice_available, Toast.LENGTH_LONG).show();
         }

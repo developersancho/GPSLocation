@@ -14,6 +14,7 @@ public class CheckInternetService extends Service {
 
     static final String CONNECTIVITY_CHANGE_ACTION = "android.net.conn.CONNECTIVITY_CHANGE";
     NotificationManager manager;
+    BroadcastReceiver receiver;
 
     public CheckInternetService() {
     }
@@ -29,7 +30,7 @@ public class CheckInternetService extends Service {
 
         IntentFilter filter = new IntentFilter();
         filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
-        BroadcastReceiver receiver = new BroadcastReceiver() {
+        receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 String action = intent.getAction();
@@ -72,6 +73,6 @@ public class CheckInternetService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Toast.makeText(this, "Service Destroyed", Toast.LENGTH_LONG).show();
+        unregisterReceiver(receiver);
     }
 }

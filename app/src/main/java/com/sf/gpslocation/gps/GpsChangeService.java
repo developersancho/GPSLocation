@@ -12,6 +12,7 @@ import com.sf.gpslocation.internet.ConnectionHelper;
 
 public class GpsChangeService extends Service {
     static final String PROVIDERS_CHANGE_ACTION = "android.location.PROVIDERS_CHANGED";
+    BroadcastReceiver receiver;
 
     public GpsChangeService() {
     }
@@ -42,5 +43,11 @@ public class GpsChangeService extends Service {
 
         registerReceiver(receiver, filter);
         return START_STICKY;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receiver);
     }
 }
